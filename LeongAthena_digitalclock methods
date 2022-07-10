@@ -1,0 +1,362 @@
+# function:   horizontal_line
+# input:      a width value (integer) and a single character (string)
+# processing: generates a single horizontal line of the desired size
+# output:     returns the generated pattern (string)
+def horizontal_line(width,char):
+    return width*char + "\n"
+
+# function:   vertical_line
+# input:      a shift value and a height value (both integers)  and a single character (string)
+# processing: generates a single vertical line of the desired height.  the line is
+#             offset from the left side of the screen using the shift value
+# output:     returns the generated pattern (string)
+def vertical_line(shift,height,char):
+    pattern = ""
+    for i in range(height):
+        pattern += shift*" " + char + "\n"
+    return pattern
+
+# function:   two_vertical_lines
+# input:      a width value and a height value (both integers)  and a single character (string)
+# processing: generates two vertical lines.  the first line is along the left side of
+#             the screen. the second line is offset using the "width" value supplied
+# output:     returns the generated pattern (string)
+def two_vertical_lines(width,height,char):
+    pattern = ""
+    for i in range(height):
+        pattern += char + " "*(width-2) + char + "\n"
+    return pattern
+
+# function:   number_1
+# input:      a width value (integer) and a single character (string)
+# processing: generates the number 1 as it would appear on a digital display
+#             using the supplied width value
+# output:     returns the generated pattern (string)
+def number_1(width, character):
+	pattern = vertical_line(width-1, 5, character)
+	return pattern
+
+# function: number_0
+# input: a width value and a single character
+# processing: generates the number 0 like a digital clock
+#             using supplied width value
+# output: returns the generated pattern (string)
+def number_0(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += two_vertical_lines(width, width - 2, char)
+    pattern += horizontal_line(width, char)
+    return pattern
+
+# function: number_2
+# input: a width value and a single character
+# processing: generates the number 2 like a digital
+#             clock using supplied width value
+# output: returns generated pattern (string)
+def number_2(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - 1, 1, char)
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - width, 1, char)
+    pattern += horizontal_line(width, char)
+    return pattern
+
+# function: number_3
+# input: a width value and a single character
+# processing: generates the number 3 like a digital clock
+#             using supplied width value
+# output: returns generated pattern (string)
+def number_3(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - 1, 1, char)
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - 1, 1, char)
+    pattern += horizontal_line(width, char)
+    return pattern
+
+# function: number_4
+# input: a width value and a single character
+# processing: generates the number 4 like a digital clock
+#             using the supplied width value
+# output: returns generated pattern (string)
+def number_4(width, char):
+    pattern = ""
+    pattern += two_vertical_lines(width, 2, char)
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - 1, 1, char)
+    pattern += vertical_line(width - 1, 1, char)
+    return pattern
+
+# function: number_5
+# input: a width value and a single character
+# processing: generates the number 5 like a digital clock
+#             using the supplied width value
+# output: returns generated pattern(string)
+def number_5(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - width, 1, char)
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - 1, 1, char)
+    pattern += horizontal_line(width, char)
+    return pattern
+
+# function: number_6
+# input: a width value and a single character
+# processing: generates the number 6 like a digital clock
+#             using the supplied width value
+# output: returns the generate patter (string)
+def number_6(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - width, 1, char)
+    pattern += horizontal_line(width, char)
+    pattern += two_vertical_lines(width, 1, char)
+    pattern += horizontal_line(width, char)
+    return pattern
+
+# function: number_7
+# input: a width value and a single character
+# processing: generates the number 7 like a digital clock
+#             using the supplied width value
+# output: returns the generated pattern (string)
+def number_7(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - 1, 4, char)
+    return pattern
+
+# function: number_8
+# input: a width value and a single character
+# processing: generates the number 7 like a digital clock
+#             using the supplied width value
+# output: returns the generated pattern(string)
+def number_8(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += two_vertical_lines(width, 1, char)
+    pattern += horizontal_line(width, char)
+    pattern += two_vertical_lines(width, 1, char)
+    pattern += horizontal_line(width, char)
+    return pattern
+
+# function: number_9
+# input: a width value and a single character
+# processing: generates the number 8 like a digital clock
+#             using the supplied width value
+# output: returns the generated pattern (String)
+def number_9(width, char):
+    pattern = ""
+    pattern += horizontal_line(width, char)
+    pattern += two_vertical_lines(width, 1, char)
+    pattern += horizontal_line(width, char)
+    pattern += vertical_line(width - 1, 2, char)
+    return pattern
+
+# function:   print_number
+# input:      a number to print (integer), a width value (integer) and a single character (string)
+# processing: prints the desired number to the screen using the supplied width value
+# output:     does not return anything
+def print_number(num, width, char):
+    if num == 0:
+       print(number_0(width, char))
+    elif num == 1:
+        print(number_1(width, char))
+    elif num == 2:
+        print(number_2(width, char))
+    elif num == 3:
+        print(number_3(width, char))
+    elif num == 4:
+        print(number_4(width, char))
+    elif num == 5:
+        print(number_5(width, char))
+    elif num == 6:
+        print(number_6(width, char))
+    elif num == 7:
+        print(number_7(width, char))
+    elif num == 8:
+        print(number_8(width, char))
+    elif num == 9:
+        print(number_9(width, char))
+    else:
+        pass
+
+# function: plus
+# input: accepts a width value and single character
+# processing: generates a plus sign and returns the pattern
+# output: returns the generated pattern (string)
+def plus(width, char):
+    pattern = ""
+    if width % 2 != 0:
+        half = (width / 2)
+        pattern += vertical_line(int(half), 2, char)
+        pattern += horizontal_line(width, char)
+        pattern += vertical_line(int(half), 2, char)
+        return pattern
+    else:
+        half = (width / 2) - 1
+        pattern += (" " * int(half)) + two_vertical_lines(2, 1, char)
+        pattern += (" " * int(half)) + two_vertical_lines(2, 1, char)
+        pattern += horizontal_line(width, char)
+        pattern += (" " * int(half)) + two_vertical_lines(2, 1, char)
+        pattern += (" " * int(half)) + two_vertical_lines(2, 1, char)
+        return pattern
+
+# function: minus
+# input: accepts a width value and single character
+# processing: generates a minus sign and returns the pattern
+# output: returns the generated pattern (string)
+def minus(width, char):
+    pattern = horizontal_line(width, char)
+    return pattern
+
+# function: multiply
+# input: accepts a width value and a single character
+# processing: generates a multiply sign and returns the pattern
+# output: returns the generated pattern (String)
+def multiply(width, char):
+    pattern = ""
+    
+    if width % 2 != 0:
+        half = width // 2
+        if width == 5:
+            pattern += two_vertical_lines(width, 1, char)
+            pattern += (" " * int(half - 1)) + two_vertical_lines(width - 2, 1, char)
+            pattern += vertical_line(width // 2, 1, char)
+            pattern += (" " * int(half - 1)) + two_vertical_lines(width - 2, 1, char)
+            pattern += two_vertical_lines(width, 1, char)
+            return pattern
+        elif width == 7:
+            pattern += two_vertical_lines(width, 1, char)
+            pattern += (" " * int(half - 1)) + two_vertical_lines(width - 4, 1, char)
+            pattern += vertical_line(width // 2, 1, char)
+            pattern += (" " * int(half - 1)) + two_vertical_lines(width - 4, 1, char)
+            pattern += two_vertical_lines(width, 1, char)
+            return pattern
+        else:
+            pattern += two_vertical_lines(width, 1, char)
+            pattern += (" " * int(half - 2)) + two_vertical_lines(width - 4, 1, char)
+            pattern += vertical_line(width // 2, 1, char)
+            pattern += (" " * int(half - 2)) + two_vertical_lines(width - 4, 1, char)
+            pattern += two_vertical_lines(width, 1, char)
+            return pattern
+    else:
+        half = width // 2
+        if width == 6:
+            pattern += two_vertical_lines(width, 1, char)
+            pattern += (" " * int(half - 2)) + two_vertical_lines(half + 1, 1, char)
+            pattern += (" " * int(half - 1)) + two_vertical_lines(1, 1, char)
+            # pattern += vertical_line((width // 2) - 1, 1, char)
+            pattern += (" " * int(half - 2)) + two_vertical_lines(half + 1, 1, char)
+            pattern += two_vertical_lines(width, 1, char)
+            return pattern
+        elif width == 8:
+            pattern += two_vertical_lines(width, 1, char)
+            pattern += (" " * int(half - 2)) + two_vertical_lines(half, 1, char)
+
+            pattern += (" " * int(half - 1)) + two_vertical_lines(1, 1, char)
+            pattern += (" " * int(half - 2)) + two_vertical_lines(half, 1, char)
+                    
+            pattern += two_vertical_lines(width, 1, char)
+            return pattern
+        else:
+            pattern += two_vertical_lines(width, 1, char)
+            pattern += (" " * int(half - 3)) + two_vertical_lines(half + 1, 1, char)
+            pattern += (" " * int(half - 1)) + two_vertical_lines(1, 1, char)
+            pattern += (" " * int(half - 3)) + two_vertical_lines(half + 1, 1, char)  
+            pattern += two_vertical_lines(width, 1, char)
+            return pattern
+
+# function: divide
+# input: accepts a width integer and a single character
+# processing: generates a division sign uding width and returns pattern
+# ouput: returns the generated pattern (string)
+
+def divide(width, char):
+    if width % 2 == 0:
+        if width == 6:
+            pattern = ""
+            pattern += ((" "*4) + two_vertical_lines(0, 1, char))
+            pattern += ((" "*3) + two_vertical_lines(0, 1, char))
+            pattern += ((" "*2) + two_vertical_lines(0, 1, char))
+            pattern += (" " + two_vertical_lines(0, 1, char))
+            pattern += two_vertical_lines(0, 1, char)
+            return pattern
+        elif width == 8:
+            pattern = ""
+            pattern += ((" "*6) + two_vertical_lines(0, 1, char))
+            pattern += ((" "*5) + two_vertical_lines(0, 1, char))
+            pattern += ((" "*3) + two_vertical_lines(0, 1, char))
+            pattern += (" " + two_vertical_lines(0, 1, char))
+            pattern += two_vertical_lines(0, 1, char)
+            return pattern
+        else:
+            pattern = ""
+            pattern += ((" "*8) + two_vertical_lines(0, 1, char))
+            pattern += ((" "*6) + two_vertical_lines(0, 1, char))
+            pattern += ((" "*4) + two_vertical_lines(0, 1, char))
+            pattern += ((" "*2) + two_vertical_lines(0, 1, char))
+            pattern += two_vertical_lines(0, 1, char)
+            return pattern
+    else:
+        if width == 5:
+            pattern = ""
+            pattern += vertical_line(4, 1, char)
+            pattern += vertical_line(3, 1, char)
+            pattern += vertical_line(2, 1, char)
+            pattern += vertical_line(1, 1, char)
+            pattern += vertical_line(0, 1, char)
+            return pattern
+        elif width == 7:
+            pattern = ""
+            pattern += vertical_line(6, 1, char)
+            pattern += vertical_line(4, 1, char)
+            pattern += vertical_line(3, 1, char)
+            pattern += vertical_line(2, 1, char)
+            pattern += vertical_line(0, 1, char)
+            return pattern
+        else:
+            pattern = ""
+            pattern += vertical_line(8, 1, char)
+            pattern += vertical_line(6, 1, char)
+            pattern += vertical_line(4, 1, char)
+            pattern += vertical_line(2, 1, char)
+            pattern += vertical_line(0, 1, char)
+            return pattern
+        
+
+
+# function: check_answer
+# input:      two numbers (number1 & number2,
+#             both integers); an answer (an integer)
+#             and an operator (+ or -, expressed as a String)
+# processing: determines if the supplied expression
+#             is correct.  for example, if the operator
+#             is "+", number1 = 1, number2 = 2
+#             and answer = 3 then the expression is correct
+#             (1 + 2 = 3).
+# output:     returns True if the expression is
+#             correct, False if it is not correct
+def check_answer(num1, num2, ans, op):
+    if op == "-":
+        if num1 - num2 == ans:
+            return True
+        else:
+            return False
+    elif op == "*":
+        if num1 * num2 == ans:
+            return True
+        else:
+            return False
+    elif op == "/":
+        if num1 / num2 == ans:
+            return True
+        else:
+            return False
+    else:
+        if num1 + num2 == ans:
+            return True
+        else:
+            return False
