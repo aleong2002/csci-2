@@ -1,0 +1,147 @@
+""""
+Athena Leong
+3/2/22
+Assignment 5 Part 1
+"""
+
+# ask for number of students and validate
+numstudents = int(input("How many students are in your class? "))
+while numstudents < 0:
+    print("Invalid # of students, try again.")
+    numstudents = int(input("How many students are in your class? "))
+print()
+
+# ask for number of tests and validate
+numtests = int(input("How many tests will you be giving in this class? "))
+while numtests < 0:
+    print("Invalid # of tests, try again.")
+    numtests = int(input("How many tests will you be giving in this class? "))
+print()
+
+# validate for only yes and no
+while True:
+    extra = str.lower(input("Is extra credit allowed?  This will permit tests scores to exceed 100 points (yes/no): "))
+    if extra in ["yes","no"]:
+        break
+    else:
+        print("Invalid choice, try again.")
+print()
+
+# set drop to a string fo validation purposes
+drop = "?"
+
+# if number of tests is greater than 1, ask if they will drop lowest score
+if numtests > 1:
+    while True:
+        drop = str.lower(input("Would you like to drop the lowest test for each student? (yes/no): "))
+        if drop in ["yes", "no"]:
+            break
+        else:
+            print("Invalid choice, try again.")
+else:
+    print("Drop lowest test score mode turned off (only 1 test being entered)")
+
+print()
+print("Thanks, here we go!")
+
+# set up accumulator variable
+astudent = 0
+bstudent = 0
+cstudent = 0
+dstudent = 0
+fstudent = 0
+studentavgtotal = 0
+classtotal = 0
+testtotal = 0
+
+# set up a for loop for number of students
+for i in range(1, numstudents + 1):
+    lowest = 1293019
+    studentavg = 0
+    studenttotal = 0
+    print()
+    print("*** Student #"+str(i)+" ***")
+    # loop for each student's number of test scores
+    for b in range(1, numtests+1):
+        test = float(input("Enter score for test #"+str(b)+": "))
+        # if no extra credit, upper bound of 0
+        if extra == "no":
+            while test <0 or test > 100:
+                if test < 0:
+                    print("Score cannot be negative, try again.")
+                else:
+                    print("Extra credit mode is not enabled, try again.")
+                test = float(input("Enter score for test #"+str(b)+": "))
+        # if extra credit, validate for only scores above 0
+        else:
+            while test < 0:
+                print("Score cannot be negative, try again")
+                test = int(input("Enter score for test #"+str(b)+": "))
+        # if dropping lowest score, if score if less than lowest, it becomes
+        # the new lowest value
+        if drop == "yes":
+            if test <= lowest:
+                lowest = test
+                studenttotal += test
+                # calc new average by omitting the test score
+                studentavg = (studenttotal - lowest) / (numtests - 1)
+
+            else:
+                studenttotal += test
+                studentavg = (studenttotal - lowest) / (numtests - 1)
+        else:
+            studenttotal += test
+            studentavg = studenttotal / numtests
+        
+        b += 1
+        
+    # student avg falls within certain ranges, they get a certain grade
+    if studentavg >= 90:
+        studentgrade = "A"
+        astudent += 1
+    elif studentavg >= 80:
+        studentgrade = "B"
+        bstudent += 1
+    elif studentavg >= 70:
+        studentgrade = "C"
+        cstudent += 1
+    elif studentavg >= 63:
+        studentgrade = "D"
+        dstudent += 1
+    else:
+        studentgrade = "F"
+        fstudent += 1
+    print()
+
+    # print the lowest test score only if dropping
+    if drop == "yes":
+        print(f"Dropping the lowest test score for this student ({lowest:.1f})")
+    else:
+        pass
+    print(f"Average score for student #{i} is {studentavg:.2f} ({studentgrade})")  
+    i += 1
+    classtotal += studenttotal
+    studentavgtotal += studentavg
+
+# calculating class average and average grade
+classavg = studentavgtotal / numstudents
+if classavg >= 90:
+    classgrade = "A"
+elif classavg >= 80:
+    classgrade = "B"
+elif classavg >= 70:
+    classgrade = "C"
+elif classavg >= 63:
+    classgrade = "D"
+else:
+    classgrade = "F"
+print()
+# print the results and how many students earned which grade avg
+print("----- REPORT -----")
+print(f"Overall class average: {classavg:.2f} ({classgrade})")
+print("# of students who earned an 'A' average:", astudent)
+print("# of students who earned an 'B' average:", bstudent)
+print("# of students who earned an 'C' average:", cstudent)
+print("# of students who earned an 'D' average:", dstudent)
+print("# of students who earned an 'F' average:", fstudent)
+
