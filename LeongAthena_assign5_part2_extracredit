@@ -1,0 +1,222 @@
+"""
+Athena Leong
+3/2/22
+Assignment 5 Part 2 Extra Credit
+"""
+# import necessary modules
+import random
+import time
+import turtle
+# setting up accumulator variables
+grey = 0
+blue = 0
+yellow = 0
+black = 0
+green = 0
+red = 0
+miss = 0
+
+# ask for throws and validate with while loop
+throws = int(input("Number of throws: "))
+while throws <= 0:
+    print("Invalid, try again!")
+    throws = int(input("Number of throws: "))
+
+#ask if want to draw, validate and make case-insensitive
+draw = str.lower(input("Would you like to draw your results with turtle graphics? "))
+while draw not in ["yes", "no"]:
+    print("Invalid, try again!")
+    draw = str.lower(input("Would you like to draw your results with turtle graphics? "))
+
+# if drawing is enabled, set up canvas
+if draw == "yes":
+    turtle.setup(400, 250)
+    turtle.tracer(0)
+
+else:
+    pass
+# begin taking time when loop starts
+origin = time.time()
+# set a for loop for random coords and then if then for the locations
+#  draw a hash for each random coord
+for i in range(0, throws):
+ 
+    x = random.uniform(-400, 400)
+    y = random.uniform(-250, 250)
+    if draw == "yes":
+        turtle.pensize(1)
+        if x >= -350 and x <= -150 and y >= 0 and y <= 200:
+            if x >= -200 and x <= -150 and y >= 0 and y <= 50:
+                grey += 1
+                turtle.penup()
+                turtle.pencolor("grey")
+                turtle.goto(x + 5, y + 5)
+                turtle.pendown()
+                turtle.goto(x - 5, y - 5)
+            else:
+                red += 1
+                turtle.penup()
+                turtle.pencolor("red")
+                turtle.goto(x + 5, y + 5)
+                turtle.pendown()
+                turtle.goto(x - 5, y - 5)
+        elif x >= -200 and x <= -100 and y >= -150 and y <= 50:
+            blue += 1
+            turtle.penup()
+            turtle.pencolor("blue")
+            turtle.goto(x + 5, y + 5)
+            turtle.pendown()
+            turtle.goto(x - 5, y - 5)
+        elif (x >= 200 and x <= 350 and y >= 100 and y<= 150):
+            green += 1
+            turtle.penup()
+            turtle.pencolor("green")
+            turtle.goto(x + 5, y + 5)
+            turtle.pendown()
+            turtle.goto(x - 5, y - 5)
+        elif(x>= 200 and x<= 350 and y>= -200 and y<= -150):
+            green += 1
+            turtle.penup()
+            turtle.pencolor("green")
+            turtle.goto(x + 5, y + 5)
+            turtle.pendown()
+            turtle.goto(x - 5, y - 5)
+        elif (x>= 200 and x<= 250 and y >= -150 and y<= 100):
+            green += 1
+            turtle.penup()
+            turtle.pencolor("green")
+            turtle.goto(x + 5, y + 5)
+            turtle.pendown()
+            turtle.goto(x - 5, y - 5)
+        elif (x>=300 and x<= 350 and y>= -150 and y<= 100):
+            green += 1
+            turtle.penup()
+            turtle.pencolor("green")
+            turtle.goto(x + 5, y + 5)
+            turtle.pendown()
+            turtle.goto(x - 5, y - 5)
+        # use distance formula for circle
+        elif x >= -50 and x <= 150 and y >= -50 and y <= 150:
+            if ((((x -50)**2) + ((y - 50)**2))**(1/2)) <= 100:
+                black += 1
+                turtle.penup()
+                turtle.pencolor("black")
+                turtle.goto(x + 5, y + 5)
+                turtle.pendown()
+                turtle.goto(x - 5, y - 5)
+            elif ((((x - 50)**2) + ((y - 150)**2))**(1/2)) <= 50:
+                yellow += 1
+                turtle.penup()
+                turtle.pencolor("yellow")
+                turtle.goto(x + 5, y + 5)
+                turtle.pendown()
+                turtle.goto(x - 5, y - 5)
+            else:
+                miss += 1
+                turtle.penup()
+                turtle.pencolor("white")
+                turtle.goto(x + 5, y + 5)
+                turtle.pendown()
+                turtle.goto(x - 5, y - 5)
+        elif x >= 0 and x <= 100 and y >= 100 and y <= 200:
+            if ((((x - 50)**2) + ((y - 150)**2))**(1/2)) <= 50:
+                if ((((x - 50)**2) + ((y - 50)**2))**(1/2)) <= 100:
+                    black += 1
+                    turtle.penup()
+                    turtle.pencolor("black")
+                    turtle.goto(x + 5, y + 5)
+                    turtle.pendown()
+                    turtle.goto(x - 5, y - 5)
+                else:
+                    yellow += 1
+                    turtle.penup()
+                    turtle.pencolor("yellow")
+                    turtle.goto(x + 5, y + 5)
+                    turtle.pendown()
+                    turtle.goto(x - 5, y - 5)
+            else:
+                miss += 1
+                turtle.penup()
+                turtle.pencolor("white")
+                turtle.goto(x + 5, y + 5)
+                turtle.pendown()
+                turtle.goto(x - 5, y - 5)
+        else:
+            miss += 1
+            turtle.penup()
+            turtle.pencolor("white")
+            turtle.goto(x + 5, y + 5)
+            turtle.pendown()
+            turtle.goto(x - 5, y - 5)
+    
+        i += 1
+    # if not drawing, just do the same without the turtle code
+    else:
+        if x >= -350 and x <= -150 and y >= 0 and y <= 200:
+            if x >= -200 and x <= -150 and y >= 0 and y <= 50:
+                grey += 1
+            else:
+                red += 1
+        elif x >= -200 and x <= -100 and y >= -150 and y <= 50:
+            blue += 1
+        elif (x >= 200 and x <= 350 and y >= 100 and y<= 150):
+            green += 1
+        elif(x>= 200 and x<= 350 and y>= -200 and y<= -150):
+            green += 1
+        elif (x>= 200 and x<= 250 and y >= -150 and y<= 100):
+            green += 1
+        elif (x>=300 and x<= 350 and y>= -150 and y<= 100):
+            green += 1
+    # use distance formula for circle
+        elif x >= -50 and x <= 150 and y >= -50 and y <= 150:
+            if ((((x -50)**2) + ((y - 50)**2))**(1/2)) <= 100:
+                black += 1
+            elif ((((x - 50)**2) + ((y - 150)**2))**(1/2)) <= 50:
+                yellow += 1
+            else:
+                miss += 1
+                
+        elif x >= 0 and x <= 100 and y >= 100 and y <= 200:
+            if ((((x - 50)**2) + ((y - 150)**2))**(1/2)) <= 50:
+                if ((((x - 50)**2) + ((y - 50)**2))**(1/2)) <= 100:
+                    black += 1
+                    
+                else:
+                    yellow += 1    
+            else:
+                miss += 1  
+        else:
+            miss += 1
+        i += 1
+
+# finish taking time when loop is done
+endtime = time.time()
+# subtract beginning time minus ending time to get time elapsed
+elapsed = endtime - origin
+print(f"Total time elapsed: {elapsed:.2f} seconds")
+print()
+
+if draw == "yes":
+    turtle.update()
+else:
+    pass
+
+#calculate percentages
+redperc = (red / throws) * 100
+blueperc = (blue /throws) * 100
+greyperc = (grey /throws) * 100
+yellowperc = (yellow / throws) * 100
+greenperc = (green / throws) * 100
+blackperc = (black /throws) * 100
+missperc = (miss / throws) * 100
+
+# print results in formatted columns
+# color:   number of color    percentage of color
+print(f'{"Red:":<15s} {red:>7,d} ({redperc:.2f}%)')
+print(f'{"Blue:":<15s} {blue:>7,d} ({blueperc:.2f}%)')
+print(f'{"Grey:":<15s} {grey:>7,d} ({greyperc:.2f}%)')
+print(f'{"Black:":<15s} {black:>7,d} ({blackperc:.2f}%)')
+print(f'{"Yellow:":<15s} {yellow:>7,d} ({yellowperc:.2f}%)')
+print(f'{"Green:":<15s} {green:>7,d} ({greenperc:.2f}%)')
+print(f'{"Misses:":<15s} {miss:>7,d} ({missperc:.2f}%)')
+
