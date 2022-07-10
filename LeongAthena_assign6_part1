@@ -1,0 +1,276 @@
+"""
+Athena Leong
+3/22/22
+Challenge 1
+"""
+
+
+# these are the basic arithmetic functions you will be using for this challenge
+# ipo notation
+# function:   add
+# input:      two integers/floats
+# processing: adds the two supplied values
+# output:     returns the sum (integer/float)
+def add(a,b):
+    return a+b
+
+# function:   sub
+# input:      two integers/floats
+# processing: subtracts the two supplied values
+# output:     returns the difference (integer/float)
+def sub(a,b):
+    return a-b
+
+# function:   mult
+# input:      two integers/floats
+# processing: multiplies the two supplied values
+# output:     returns the product (integer/float)
+def mult(a,b):
+    return a*b
+
+# function:   div
+# input:      two integers/floats
+# processing: divides the first value by the second value
+# output:     returns the result (float)
+def div(a,b):
+    return a/b
+    
+# function:   sqrt
+# input:      one integer/float
+# processing: computes the square root of the supplied value
+# output:     returns the square root (float)
+def sqrt(a):
+    return a**0.5
+
+# function:   square
+# input:      one integer/float
+# processing: raises the supplied integer/float to the 2nd power
+# output:     returns the square (integer/float)
+def square(a):
+    return a**2
+
+
+
+
+# example
+# y = mx + b
+m = 3
+x = 2
+b = 5
+
+y = add(mult(m, x), b)
+print(y)
+
+# challenge 1: expression 1
+# x = (3 -4) + (1*2)
+x = add(sub(3, 4), mult(1, 2))
+print(x)
+
+#challenge 1: expression 2
+# x = 5 + 1 + 7 + 9 + 13 + 12
+x = add(add(13, 12), add(add(5, 1), add(7, 9)))
+print(x)
+
+# challenge 1: expression 3
+# x = (5 + 1) / (7 + 2 + 3)
+x = div(add(5, 1), add(add(7, 2), 3))
+print(x)
+
+# challenge 1: expression 4
+# compute distance
+# point 1
+x1 = 0
+y1 = 0
+
+# point 2
+x2 = 100
+y2 = 100
+
+distance = sqrt(add(square(sub(x2, x1)), square(sub(y2, y1))))
+print(distance)
+
+#Challenge 2
+
+# function: maximum
+# input: 2 ints
+# processing: finds the larger of the two and orders them
+# ouput: returns int
+def maximum(a, b):
+    if a > b:
+        return a
+    else:
+        return b
+
+# function: minimum
+# input: 2 ints
+# processing: finds the smaller of the 2 and orders them
+# output: returns int
+def minimum(a, b):
+    if a < b:
+        return a
+    else:
+        return b
+
+a = 5
+b = 10
+c = 15
+d = 20
+e = 20
+
+ans1 = maximum(a,b)
+ans2 = maximum(a,c)
+ans3 = maximum(a,d)
+print (ans1,ans2,ans3) # 10 15 20
+
+ans4 = minimum(d,c)
+ans5 = minimum(d,b)
+ans6 = minimum(d,a)
+print (ans4,ans5,ans6) # 15 10 5
+
+ans7 = maximum( maximum(a,b), maximum(c,d) )
+print ("The biggest is:", ans7)
+
+ans8 = maximum(d,e) # d and e are the same, so either is considered the maximum
+ans8 = minimum(d,e) # d and e are the same, so either is considered the minimum
+print(ans8, ans8) # 20 20
+
+# Challenge 3
+
+# function: valid_date
+# input: 2 ints (month and a day)
+# processing: sees if the date is valid or not
+# output: boolean (True or False)
+def valid_date(a, b):
+    if a < 1 or a > 12:
+        return False
+    elif a == 2:
+        if 1 <= b <= 28:
+            return True
+        else:
+            return False
+    elif a == 1:
+        if 1 <= b <= 31:
+            return True
+        else:
+            return False
+    elif a == 3:
+        if 1 <= b <= 31:
+            return True
+        else:
+            return False
+    elif a == 4:
+        if 1 <= b <= 30:
+            return True
+        else:
+            return False
+    elif a == 5:
+        if 1 <= b <= 31:
+            return True
+        else:
+            return False
+    elif a == 6:
+        if 1 <= b <= 30:
+            return True
+        else:
+            return False
+    elif a == 7:
+        if 1 <= b <= 31:
+            return True
+        else:
+            return False
+    elif a == 8:
+        if 1 <= b <= 31:
+            return True
+        else:
+            return False
+    elif a == 9:
+        if 1 <= b <= 30:
+            return True
+        else:
+            return False
+    elif a == 10:
+        if 1 <= b <= 31:
+            return True
+        else:
+            return False
+    elif a == 11:
+        if 1 <= b <= 30:
+            return True
+        else:
+            return False
+    else:
+        if 1 <= b <= 31:
+            return True
+        else:
+            return False
+
+
+print (valid_date(99,1)) # False
+print (valid_date(1,99)) # False
+print (valid_date(99,99)) # False
+
+print (valid_date(-99,1)) # False
+print (valid_date(1,-99)) # False
+print (valid_date(-99,-99)) # False
+
+print (valid_date(9,25)) #True
+print (valid_date(10,15)) # True
+print (valid_date(11,31)) # False
+print (valid_date(2,28)) # True
+print (valid_date(2,29)) # False
+
+# Challenge 4
+
+# function: simple_sort_version1
+# input: 2 integers
+# processing: sort values in ascending order and return them
+# output: 2 values in ascending order
+def simple_sort_version1(a, b):
+    if a < b:
+        return a, b
+    else:
+        return b, a
+
+a,b = simple_sort_version1(10,20)
+print (a,b) # 10 20
+
+a,b = simple_sort_version1(20,10)
+print (a,b) # 10 20
+
+a,b = simple_sort_version1(30,30)
+print (a,b) # 30 30
+
+# Challenge 5
+
+# function: simple_sort_version2
+# input: 3 values
+# processing: sorts values in ascending order and returns them
+# output: 3 values
+def simple_sort_version2(a, b, c):
+    if a < b and a < c:
+        if b < c:
+            return a, b, c
+        else:
+            return a, c, b
+    elif b < c and b < a:
+        if c < a:
+            return b, c, a
+        else:
+            return b, a, c
+    else:
+        if a < b:
+            return c, a, b
+        else:
+            return c, b, a
+
+a,b,c = simple_sort_version2(10,20,30)
+print (a,b,c) # 10 20 30
+
+a,b,c = simple_sort_version2(10,30,20)
+print (a,b,c) # 10 20 30
+
+a,b,c = simple_sort_version2(30,20,10)
+print (a,b,c) # 10 20 30
+
+a,b,c = simple_sort_version2(30,20,20)
+print (a,b,c) # 20 20 30
