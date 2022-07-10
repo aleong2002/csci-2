@@ -1,0 +1,93 @@
+"""
+Athena Leong
+3/2/22
+Assignment 5 Part 2
+"""
+import random
+import time
+
+# accumulator variables
+grey = 0
+blue = 0
+yellow = 0
+black = 0
+green = 0
+red = 0
+miss = 0
+
+# ask for throws and then validate
+throws = int(input("Number of throws: "))
+while throws <= 0:
+    print("Invalid, try again!")
+    throws = int(input("Number of throws: "))
+
+# begin taking time before loop
+origin = time.time()
+# for loop for random coords and then if then for the locations
+# add 1 for each time it lands in a shape or misses
+for i in range(0, throws):
+ 
+    x = random.uniform(0, 800)
+    y = random.uniform(0, 500)
+
+    if x >= 50 and x <= 250 and y >= 50 and y <= 250:
+        if x >= 200 and x <= 250 and y >= 200 and y <= 250:
+            grey += 1
+        else:
+            red += 1
+    elif x >= 200 and x <= 300 and y >= 200 and y <= 400:
+        blue += 1
+    elif x >= 600 and x <= 750 and y >= 400 and y <= 450:
+        green += 1
+    elif x >= 600 and x <= 750 and y >= 100 and y <=150:
+        green += 1
+    elif x >= 700 and x <= 750 and y >= 150 and y <= 400:
+        green += 1
+    elif x >=600 and x <= 650 and y >=150 and y <= 400:
+        green += 1
+    # use distance formula for circle
+    # origin (450, 200)
+    elif x >= 350 and x <= 550 and y >= 100 and y <= 300:
+        if ((((x -450)**2) + ((y - 200)**2))**(1/2)) <= 100:
+            black += 1
+        elif ((((x - 450)**2) + ((y - 100)**2))**(1/2)) <= 50:
+            yellow += 1
+        else:
+            miss += 1
+    elif x >= 400 and x <= 500 and y >= 50 and y <= 150:
+        if ((((x - 450)**2) + ((y - 100)**2))**(1/2)) <= 50:
+            if ((((x -450)**2) + ((y - 200)**2))**(1/2)) <= 100:
+                black += 1
+            else:
+                yellow += 1
+        else:
+            miss += 1
+    else:
+        miss += 1
+
+    i += 1
+#taking end time
+endtime = time.time()
+
+# subtract to get time elapsed
+elapsed = endtime - origin
+print(f"Total time elapsed: {elapsed:.2f} seconds")
+print()
+
+# calculate percentages 
+redperc = (red / throws) * 100
+blueperc = (blue /throws) * 100
+greyperc = (grey /throws) * 100
+yellowperc = (yellow / throws) * 100
+greenperc = (green / throws) * 100
+blackperc = (black /throws) * 100
+missperc = (miss / throws) * 100
+
+# print results, percentages in formatted columns
+print(f'{"Red:":<15s} {red:>7,d} ({redperc:.2f}%)')
+print(f'{"Blue:":<15s} {blue:>7,d} ({blueperc:.2f}%)')
+print(f'{"Grey:":<15s} {grey:>7,d} ({greyperc:.2f}%)')
+print(f'{"Black:":<15s} {black:>7,d} ({blackperc:.2f}%)')
+print(f'{"Yellow:":<15s} {yellow:>7,d} ({yellowperc:.2f}%)')
+print(f'{"Green:":<15s} {green:>7,d} ({greenperc:.2f}%)')
+print(f'{"Misses:":<15s} {miss:>7,d} ({missperc:.2f}%)')
